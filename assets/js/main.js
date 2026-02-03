@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (window.scrollY > 50) {
             navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
         } else {
-            navbar.style.boxShadow = 'none';
+            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
         }
     });
 
@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }, observerOptions);
 
     // Animate elements on scroll
-    document.querySelectorAll('.project-card, .stat, .skill-category').forEach(el => {
+    document.querySelectorAll('.project-card, .about-text h3').forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(20px)';
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     // Project card hover effect
     projectCards.forEach(card => {
         card.addEventListener('mouseenter', function() {
-            this.style.transform = 'translateY(-8px)';
+            this.style.transform = 'translateY(-5px)';
         });
         card.addEventListener('mouseleave', function() {
             this.style.transform = 'translateY(0)';
@@ -63,11 +63,10 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Counter animation for stats
-    const stats = document.querySelectorAll('.stat-number');
+    const stats = document.querySelectorAll('.hero-stats .stat-number');
     stats.forEach(stat => {
         const target = stat.textContent;
         const hasPlus = target.includes('+');
-        const hasM = target.includes('M');
         const numTarget = parseFloat(target.replace(/[^0-9.]/g, ''));
         
         let current = 0;
@@ -87,11 +86,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 displayValue = displayValue.replace('.0', '');
             }
             if (hasPlus) displayValue += '+';
-            if (hasM) displayValue += 'M+';
             
             stat.textContent = displayValue;
         }, stepTime);
     });
 
-    console.log('Personal website loaded successfully');
+    console.log('Wei Tang portfolio loaded successfully');
 });
