@@ -91,5 +91,55 @@ document.addEventListener('DOMContentLoaded', function() {
         }, stepTime);
     });
 
+    // Video hover effect with custom cursor
+    const video = document.getElementById('hoverVideo');
+    if (video) {
+        const videoContainer = video.closest('.hero-video');
+        if (videoContainer) {
+            videoContainer.style.cursor = 'none';
+            
+            // Create custom cursor element
+            const cursor = document.createElement('div');
+            cursor.className = 'custom-cursor';
+            cursor.innerHTML = '👋';
+            cursor.style.cssText = `
+                position: fixed;
+                pointer-events: none;
+                font-size: 2rem;
+                z-index: 9999;
+                display: none;
+                transform: translate(-50%, -50%);
+            `;
+            document.body.appendChild(cursor);
+
+            // Show custom cursor on hover
+            videoContainer.addEventListener('mouseenter', function() {
+                cursor.style.display = 'block';
+            });
+
+            // Hide custom cursor on leave
+            videoContainer.addEventListener('mouseleave', function() {
+                cursor.style.display = 'none';
+            });
+
+            // Follow mouse
+            videoContainer.addEventListener('mousemove', function(e) {
+                cursor.style.left = e.clientX + 'px';
+                cursor.style.top = e.clientY + 'px';
+            });
+
+            // Pause when it finishes autoplay
+            video.addEventListener('ended', function() {
+                video.pause();
+            });
+
+            // Play from the beginning on click
+            video.addEventListener('click', function() {
+                video.currentTime = 0;
+                video.play();
+            });
+        }
+    }
+
     console.log('Wei Tang portfolio loaded successfully');
 });
