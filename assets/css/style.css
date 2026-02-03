@@ -128,10 +128,12 @@ body {
 
 .hero-stats .stat {
     background: var(--color-bg-white);
-    padding: 16px 24px;
+    padding: 16px 20px;
     border-radius: 12px;
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    width: 160px;
+    flex-shrink: 0;
 }
 
 .hero-stats .stat-number {
@@ -139,11 +141,16 @@ body {
     font-size: 1.75rem;
     font-weight: 700;
     color: var(--color-accent);
+    font-variant-numeric: tabular-nums;
+    min-width: 80px;
+    text-align: center;
 }
 
 .hero-stats .stat-label {
+    display: block;
     font-size: 0.8rem;
     color: var(--color-text-secondary);
+    margin-top: 4px;
 }
 
 .social-links {

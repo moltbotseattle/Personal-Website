@@ -67,6 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
     stats.forEach(stat => {
         const target = stat.textContent;
         const hasPlus = target.includes('+');
+        const hasDollar = target.includes('$');
+        const hasM = target.includes('M');
         const numTarget = parseFloat(target.replace(/[^0-9.]/g, ''));
         
         let current = 0;
@@ -85,9 +87,15 @@ document.addEventListener('DOMContentLoaded', function() {
             if (displayValue.endsWith('.0')) {
                 displayValue = displayValue.replace('.0', '');
             }
-            if (hasPlus) displayValue += '+';
             
-            stat.textContent = displayValue;
+            // Build final value with preserved symbols
+            let finalValue = '';
+            if (hasDollar) finalValue += '$';
+            finalValue += displayValue;
+            if (hasM) finalValue += 'M';
+            if (hasPlus) finalValue += '+';
+            
+            stat.textContent = finalValue;
         }, stepTime);
     });
 
