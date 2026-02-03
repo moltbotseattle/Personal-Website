@@ -1,15 +1,30 @@
 document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
     const navLinks = document.querySelectorAll('.nav-links a');
+    const navItems = document.querySelectorAll('.nav-links li');
     const projectCards = document.querySelectorAll('.project-card');
 
-    // Navbar scroll effect
+    // Active state on scroll
+    const sections = document.querySelectorAll('section[id]');
+    
     window.addEventListener('scroll', function() {
-        if (window.scrollY > 50) {
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
-        } else {
-            navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.05)';
-        }
+        const scrollY = window.scrollY;
+        
+        sections.forEach(section => {
+            const sectionHeight = section.offsetHeight;
+            const sectionTop = section.offsetTop - 100;
+            const sectionId = section.getAttribute('id');
+            
+            if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                navItems.forEach(item => {
+                    item.classList.remove('active');
+                    const link = item.querySelector('a');
+                    if (link && link.getAttribute('href') === '#' + sectionId) {
+                        item.classList.add('active');
+                    }
+                });
+            }
+        });
     });
 
     // Smooth scroll for navigation links
