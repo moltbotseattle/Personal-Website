@@ -547,13 +547,13 @@ section {
         padding: 100px 24px 60px;
     }
 
+    .hero-stats {
+        display: none;
+    }
+
     .hero-description {
         margin-left: auto;
         margin-right: auto;
-    }
-
-    .hero-stats {
-        justify-content: center;
     }
 
     .social-links {
